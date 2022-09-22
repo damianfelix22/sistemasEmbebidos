@@ -1,7 +1,7 @@
 #include "DHT.h"
 #include <Arduino.h>
 #include <Adafruit_Sensor.h>
-#define DHTTYPE DHT11   
+#define DHTTYPE DHT22   
 
 const int DHTPin = 4;     // what digital pin we're connected to
 DHT dht(DHTPin, DHTTYPE);
