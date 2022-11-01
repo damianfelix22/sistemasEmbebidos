@@ -50,7 +50,7 @@ void loop() {
   display.setCursor(0,0);
   display.print("humedad:");
   display.print(h);
-  display.setCursor(0,30);
+  display.setCursor(0,40);
   display.setTextSize(1);
   display.print("temperatura:");
   display.print(t);
