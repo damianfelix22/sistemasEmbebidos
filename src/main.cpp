@@ -148,10 +148,10 @@ void loop() {
   display.print(t);
   display.display();
 
-  sprintf(temp, "Temp: %f", t);
-  sprintf(hum, "Hum: %f", h);
+  sprintf(temp, "%f", t);
+  sprintf(hum, "%f", h);
 
   mqttClient.publish("temperatura",temp);
   mqttClient.publish("humedad",hum);
-  delay(1000);
+  delay(100);
 }  
