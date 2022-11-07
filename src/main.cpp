@@ -150,6 +150,8 @@ void loop()
     rojo = rojo_codigo.toInt();
     verde = verde_codigo.toInt();
     azul = azul_codigo.toInt();
+
+    delay(500);
     
 
 
