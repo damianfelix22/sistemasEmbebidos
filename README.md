@@ -1,2 +1,8 @@
 # Sistemas Embebidos 2022 - Proyecto Final
-Proyecto final de la materia Sistemas Embebidos - UNSL
+Explicación del proyecto
+
+## Rama ESP32-1
+Explicación
+
+## Rama ESP32-1
+Explicación
