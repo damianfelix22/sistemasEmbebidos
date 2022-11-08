@@ -6,20 +6,20 @@
 WiFiClient esp32Client;
 PubSubClient mqttClient(esp32Client);
 
-const char* ssid     = "FAST";
-const char* password = "Genaro1972";
+const char* ssid     = "SisEmbebidos22";
+const char* password = "sisembebidos2022";
 
-char *server = "192.168.0.187";
+char *server = "192.168.0.100";
 int port = 1883;
 
-int ledpin= 4;
+
 
 int var = 0;
 int ledval = 0;
 String resultS = "";
 
 int valorLDR = 0;
-int pinLDR = 4;
+int pinLDR = 35;
 
 int Rojo = 23;
 int Verde = 22;
@@ -73,7 +73,7 @@ void reconnect() {
   while (!mqttClient.connected()) {
     Serial.println("Intentando conectarse MQTT...");
 
-    if (mqttClient.connect("esp32")) {
+    if (mqttClient.connect("esp32_2")) {
       Serial.println("Conectado");
 
       mqttClient.subscribe("color");
@@ -93,6 +93,7 @@ void setup()
   pinMode(Azul,OUTPUT);
 
   pinMode(pinLeDsensor,OUTPUT);
+  digitalWrite(pinLeDsensor, LOW);
   
   Serial.begin(9600);
   wifiInit();
@@ -103,15 +104,13 @@ void setup()
 void loop()
 {
     valorLDR = analogRead(pinLDR);
-    Serial.println(valorLDR);
-
+   
     if(valorLDR >= 400)
     {
         digitalWrite(pinLeDsensor, LOW);
     }
     else
     {
-
         digitalWrite(pinLeDsensor, HIGH);
     }
 
@@ -122,7 +121,7 @@ void loop()
 
     int longitud = resultS.length();
     String colores = resultS.substring(4, longitud-1);
-    Serial.println(colores); 
+     
 
     int coma1 = colores.indexOf(",");
     int coma2 = colores.substring(coma1+1, colores.length()).indexOf(",") + coma1 + 1;
@@ -132,17 +131,9 @@ void loop()
 
     
     String rojo_codigo = colores.substring(0, coma1);
-    Serial.println(rojo_codigo);
-    delay(500);
-
     String verde_codigo = colores.substring(coma1+1, coma2);
-    Serial.println(verde_codigo);
-    delay(500);
-
     String azul_codigo = colores.substring(coma2+1, coma2+5);
-    Serial.println(azul_codigo);
-    delay(500);
-
+    
     int rojo = 0;
     int verde = 0;
     int azul = 0;
@@ -150,14 +141,6 @@ void loop()
     rojo = rojo_codigo.toInt();
     verde = verde_codigo.toInt();
     azul = azul_codigo.toInt();
-
-    delay(500);
-    
-
-
-
-
-
 
     analogWrite(Rojo, rojo);
     analogWrite(Verde, verde);
